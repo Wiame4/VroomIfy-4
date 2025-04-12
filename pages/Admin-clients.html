@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Clients - Admin</title>
+    <link rel="stylesheet" href="../styles/Admin-barre.css">
+    <link rel="stylesheet" href="../styles/Admin-clients.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <link rel="stylesheet" href="../styles/Admin-barre.css">
+    <!-- Inclure la navbar -->
+<div id="navbar-container"></div>
+
+<script>
+// Chargement de la navbar
+fetch('Admin-barre.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        
+        // Marquer le lien actif
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === currentPage);
+        });
+    });
+</script>
+    <div class="admin-container">
+        <h1><i class="fas fa-users"></i> Gestion des Clients</h1>
+        
+        <div class="controls">
+            <div class="search-group">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Rechercher par nom ou prénom...">
+            </div>
+            <button id="refresh-btn"><i class="fas fa-sync-alt"></i> Actualiser</button>
+        </div>
+        
+        <div class="clients-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Véhicule</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="clients-body">
+                    <!-- emplacement dakchi d client  -->
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> </button>
+                <span id="page-info">Page 1 sur 1</span>
+                <button id="next-page" disabled> <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="client-details" id="details-modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Détails du Client #<span id="detail-id"></span></h2>
+                
+                <div class="details-section">
+                    <h3><i class="fas fa-user"></i> Informations Personnelles</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Nom :</span>
+                        <span id="detail-nom"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Prénom :</span>
+                        <span id="detail-prenom"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email :</span>
+                        <span id="detail-email"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Téléphone :</span>
+                        <span id="detail-tel"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Adresse :</span>
+                        <span id="detail-adresse"></span>
+                    </div>
+                </div>
+                
+                <div class="details-section">
+                    <h3><i class="fas fa-car"></i> Véhicule</h3>
+                    <div class="detail-row">
+                        <span class="detail-label">Marque :</span>
+                        <span id="detail-marque"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Modèle :</span>
+                        <span id="detail-modele"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Carburant :</span>
+                        <span id="detail-carburant"></span>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button id="close-modal-btn">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pied de page :-->
+  <div id="footer-container"></div>
+    <script src="../js/Admin-barre.js"></script>
+    <script src="../js/Admin-clients.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Administrateur - VroomIfy</title>
+    <link rel="stylesheet" href="../styles/Admin-barre.css">
+    <link rel="stylesheet" href="../styles/Admin-ajouter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   <!-- Inclure la navbar -->
+<div id="navbar-container"></div>
+
+<script>
+// Chargement de la navbar
+fetch('Admin-barre.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        
+        // Marquer le lien actif
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === currentPage);
+        });
+    });
+</script>
+
+    <div class="main-content">
+        <header>
+            <h1>Ajouter un Administrateur</h1>
+           
+        </header>
+
+        <div class="content">
+            <div class="card">
+                <h2><i class="fas fa-user-plus"></i> Formulaire d'ajout</h2>
+                <form id="adminForm">
+                    <div class="form-group">
+                        <label for="nomAdmin">Nom complet</label>
+                        <input type="text" id="nomAdmin" name="nomAdmin" required oninvalid="this.setCustomValidity('Veuillez saisir le nom !')" oninput="this.setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailAdmin">Email</label>
+                        <input type="email" id="emailAdmin" name="emailAdmin" required oninvalid="this.setCustomValidity('Veuillez saisir votre email !')" oninput="this.setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label for="mot_de_passeAdmin">Mot de passe</label>
+                        <div class="password-input">
+                            <input type="password" id="mot_de_passeAdmin" name="mot_de_passeAdmin" required oninvalid="this.setCustomValidity('Veuillez saisir le mot de passe !')" oninput="this.setCustomValidity('')">
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirmer le mot de passe</label>
+                        <div class="password-input">
+                            <input type="password" id="confirm_password" name="confirm_password" required oninvalid="this.setCustomValidity('Veuillez confirmer le mot de passe !')" oninput="this.setCustomValidity('')">
+                            <i class="fas fa-eye toggle-password"></i>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Ajouter l'admin</button>
+                </form>
+                <div id="message"></div>
+            </div>
+        </div>
+    </div>
+<!-- pied de page :-->
+<div id="footer-container"></div>
+<script src="../js/Admin-barre.js"></script>
+
+    <script src="../js/Admin-ajouter.js"></script>
+</body>
+</html>

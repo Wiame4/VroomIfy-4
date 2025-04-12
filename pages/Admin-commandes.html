@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes - Admin</title>
+    <link rel="stylesheet" href="../styles/Admin-commandes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <link rel="stylesheet" href="../styles/Admin-barre.css">
+    <!-- Inclure la navbar -->
+<div id="navbar-container"></div>
+
+<script>
+// Chargement de la navbar
+fetch('Admin-barre.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        
+        // Marquer le lien actif
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === currentPage);
+        });
+    });
+</script>
+    <div class="admin-container">
+        <h1><i class="fas fa-shopping-cart"></i> Gestion des Commandes</h1>
+        
+        <div class="dashboard">
+            <div class="dashboard-card">
+                <div class="value" id="total-orders">0</div>
+                <div class="label">Commandes totales</div>
+            </div>
+            <div class="dashboard-card">
+                <div class="value" id="pending-orders">0</div>
+                <div class="label">En attente</div>
+            </div>
+           
+        </div>
+        
+        <div class="controls">
+            <!--<div class="search-group">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Rechercher une commande...">
+            </div>-->
+            <div class="filter-group">
+                <label for="date-filter"><i class="fas fa-calendar"></i> Période :</label>
+                <select id="date-filter">
+                    <option value="all">Toutes</option>
+                    <option value="today">Aujourd'hui</option>
+                    <option value="week">Cette semaine</option>
+                    <option value="month">Ce mois</option>
+                    <option value="custom">Personnalisée</option>
+                </select>
+                <div id="custom-date-range" style="display:none;">
+                    <input type="date" id="start-date">
+                    <span>au</span>
+                    <input type="date" id="end-date">
+                </div>
+            </div>
+        </div>
+        
+        <div class="orders-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° Commande</th>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Contact/Adresse</th>
+                        <th>Produits</th>
+                        <th>Montant</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-body">
+                    <!-- Commandes chargées via JS -->
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <button id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                <span id="page-info">Page 1 sur 1</span>
+                <button id="next-page" disabled><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Détails Commande -->
+    <div class="order-modal" id="order-modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Commande #<span id="order-id"></span></h2>
+            <div class="order-header">
+                <div><strong>Date :</strong> <span id="order-date"></span></div>
+                <div><strong>Total :</strong> <span id="order-total"></span> MAD</div>
+            </div>
+            <h3><i class="fas fa-user"></i> Informations client</h3>
+<div class="client-details">
+    <div><strong>Nom :</strong> <span id="client-name"></span></div>
+    <div><strong>Téléphone :</strong> <span id="client-phone"></span></div>
+    <div><strong>Adresse :</strong> <span id="client-address"></span></div>
+    <div><strong>Véhicule :</strong> <span id="client-vehicle"></span></div>
+</div>
+            <h3><i class="fas fa-boxes"></i> Produits commandés</h3>
+            <table class="order-products">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="order-products-body">
+                    <!-- Produits chargés via JS -->
+                </tbody>
+            </table>
+            
+            <div class="order-actions">
+                <div class="status-control">
+                    <label for="order-status">Statut :</label>
+                    <select id="order-status">
+                        <option value="en attente">En attente</option>
+                        <option value="traitement">En traitement</option>
+                        <option value="expediee">Expédiée</option>
+                        <option value="livree">Livrée</option>
+                        <option value="annulee">Annulée</option>
+                    </select>
+                </div>
+                <button id="save-status"><i class="fas fa-save"></i> Enregistrer</button>
+                <button id="print-order"><i class="fas fa-print"></i> Imprimer</button>
+            </div>
+        </div>
+    </div>
+    <!-- pied de page :-->
+  <div id="footer-container"></div>
+
+    <script src="../js/Admin-commandes.js"></script>
+</body>
+</html>

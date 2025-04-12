@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Produits - Admin</title>
+    <link rel="stylesheet" href="../styles/Admin-barre.css">
+    <link rel="stylesheet" href="../styles/Admin-produits.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <link rel="stylesheet" href="../styles/Admin-barre.css">
+    <!-- Inclure la navbar -->
+<div id="navbar-container"></div>
+
+<script>
+// Chargement de la navbar
+fetch('Admin-barre.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        
+        // Marquer le lien actif
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === currentPage);
+        });
+    });
+</script>
+    <div class="admin-container">
+        <h1><i class="fas fa-box-open"></i> Gestion des Produits</h1>
+        
+        <div class="controls">
+            <div class="search-group">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Rechercher un produit...">
+            </div>
+            <button id="add-product-btn"><i class="fas fa-plus"></i> Ajouter un produit</button>
+        </div>
+        
+        <div class="products-grid" id="products-grid">
+            <!-- Produits chargés via JavaScript -->
+        </div>
+        
+        <div class="pagination">
+            <button id="prev-page" disabled><i class="fas fa-chevron-left"></i> </button>
+            <span id="page-info">Page 1 sur 1</span>
+            <button id="next-page" disabled> <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Modal Ajout/Modification -->
+    <div class="product-modal" id="product-modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Ajouter un produit</h2>
+            
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                
+                <div class="form-group">
+                    <label for="product-name">Nom du produit</label>
+                    <input type="text" id="product-name" required oninvalid="this.setCustomValidity('Veuillez saisir le nom du produit !')" oninput="this.setCustomValidity('')">
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-desc">Description</label>
+                    <textarea id="product-desc" rows="3" required oninvalid="this.setCustomValidity('Veuillez donner la description de votre produit !')" oninput="this.setCustomValidity('')"></textarea>
+                </div>
+                
+                <div class="form-group double">
+                    <div>
+                        <label for="product-price">Prix (MAD)</label>
+                        <input type="number" id="product-price" min="0" step="0.01" required oninvalid="this.setCustomValidity('Veuillez donner le prix !')" oninput="this.setCustomValidity('')">
+                    </div>
+                    <div>
+                        <label for="product-stock">Stock</label>
+                        <input type="number" id="product-stock" min="0" required oninvalid="this.setCustomValidity('Veuillez insérer le stock !')" oninput="this.setCustomValidity('')">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-image">Image</label>
+                    <input type="file" id="product-image" accept="image/*" required oninvalid="this.setCustomValidity('Veuillez donner une image de votre produit !')" oninput="this.setCustomValidity('')">
+                    <div class="image-preview" id="image-preview"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="save-product">Enregistrer</button>
+                    <button type="button" id="cancel-edit">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation -->
+    <div class="confirm-modal" id="confirm-modal" style="display:none;">
+        <div class="modal-content">
+            <p id="confirm-message">Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+            <div class="modal-actions">
+                <button id="confirm-delete">Oui, supprimer</button>
+                <button id="cancel-delete">Annuler</button>
+            </div>
+        </div>
+    </div>
+    <!-- pied de page :-->
+  <div id="footer-container"></div>
+    <script src="../js/Admin-barre.js"></script>
+    <script src="../js/Admin-produits.js"></script>
+</body>
+</html>

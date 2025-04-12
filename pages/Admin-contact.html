@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages des Clients</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link rel="stylesheet" href="../styles/Admin-contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ 
+ 
+</head>
+<body>
+  <link rel="stylesheet" href="../styles/Admin-barre.css">
+  <!-- Inclure la navbar -->
+<div id="navbar-container"></div>
+
+<script>
+// Chargement de la navbar
+fetch('Admin-barre.html')
+  .then(response => response.text())
+  .then(html => {
+      document.getElementById('navbar-container').innerHTML = html;
+      
+      // Marquer le lien actif
+      const currentPage = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === currentPage);
+      });
+  });
+</script>
+  
+  <h1>Messages des Clients</h1>
+  <div id="conteneur-messages"></div>
+  
+  <!-- Pagination
+  <div class="pagination">
+      <button id="prevPage">Précédent</button>
+      <span id="pageNumber">1</span>
+      <button id="nextPage">Suivant</button>
+  </div> -->
+  <!-- pagination 2 -->
+<div class="pagination">
+  <button id="prevPage" disabled><i class="fas fa-chevron-left"></i> </button>
+  <span id="pageNumber">Page 1 sur 1</span>
+  <button id="nextPage" disabled> <i class="fas fa-chevron-right"></i></button>
+</div>
+
+  <!-- Fenêtre modale pour répondre au client -->
+  <div id="modal-reponse" class="modal" style="display:none;" >
+      <div class="modal-contenu">
+          <span class="fermer-modal" style="cursor:pointer;">&times;</span>
+          <h2>Répondre au Client</h2>
+          <form id="formulaire-email" action="Admin-contact.php" method="post">
+              <!-- Champ caché pour l'ID du message -->
+              <input type="hidden" id="id_message" name="id_message" value="">
+              
+              <label for="email-client">Email du Client :</label>
+              <input type="email" id="email-client" name="email-client" readonly>
+
+              <label for="message-reponse">Message :</label>
+              <textarea id="message-reponse" name="message-reponse" required oninvalid="this.setCustomValidity('Veuillez saisir le message !')" oninput="this.setCustomValidity('')"></textarea>
+
+              <button type="submit">Envoyer</button>
+          </form>
+      </div>
+  </div>
+
+  <!-- pied de page :-->
+  <div id="footer-container"></div>
+  <script src="../js/Admin-contact.js"></script>
+</body>
+</html>

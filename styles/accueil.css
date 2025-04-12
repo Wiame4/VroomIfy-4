@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+/*********** section d'accueil : ********/
+
+.home  {
+     
+    padding :10px 200px 100px 200px;
+    position : relative;
+    width: fit-content;
+    height : 750px;
+    display : flex;
+    justify-content: center;
+    flex-direction: column;
+    background : #2696e9;
+}
+
+.home::before {
+    z-index : 777;
+    content : '';
+    position : absolute;
+    background : rgba(3, 96, 251, 0.3);
+    width : 100%;
+    height : 100%;
+    top : 0;
+    left :0;
+}
+
+.home .content {
+    z-index : 888;
+    color: #fff;
+    /*width : 70%;*/
+    width: fit-content;
+    margin-top : 50px;
+    height : 100%;
+}
+
+.home .content h1 {
+    padding-top : 100px;
+    font-size : 4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 75px;
+    margin-bottom: 40px;
+}
+
+.home .content h1 span {
+    font-size : 1.2em;
+    font-weight : 600;
+    
+}   
+
+
+.home .content p {
+    width : 70%;
+    margin-bottom: 30px;
+}
+
+.home .content a {
+    background: #fff;
+    padding : 15px 35px;
+    color : #2696e9 ;
+    font-size: 1.1em;
+    font-weight : 500;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: .7s ease;
+}
+.home .content a:hover {
+    background:#2696e9 ;
+    color :#fff;
+    transition : .7s ease;
+}
+.home .media-icons {
+    z-index : 888;
+    position : absolute;
+    right : 30px;
+    display : flex;
+    flex-direction : column;
+    transition: 0.5s ease;
+}
+
+.home .media-icons a {
+    color: #fff;
+    font-size :1.6em;
+    transition : 0.3s ease;
+}
+
+.home .media-icons a:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.home .media-icons a:hover {
+    transform : scale(1.3);
+}
+
+.home video {
+    z-index : 000;
+    position : absolute;
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    object-fit : cover;
+}
+.slider-navigation {
+    z-index : 888;
+    position : relative;
+    display :flex;
+    justify-content: center;
+    align-items : center;
+    transform : translateY(80px);
+    margin-bottom: 12px;
+}
+
+.slider-navigation .nav-btn {
+    width : 12px;
+    height : 12px;
+    background: #fff;
+    border-radius : 50%;
+    cursor : pointer;
+    box-shadow : 0 0 2px rgba(255, 255, 255, 0.5);
+    transition : 0.3s ease;
+}
+
+.slider-navigation .nav-btn.active {
+    background : #2696e9;
+}
+
+.slider-navigation .nav-btn:not(:last-child) {
+    margin-right : 20px;
+}
+
+.slider-navigation .nav-btn:hover {
+    transform : scale(1.2);
+}
+
+/*.video-slide {
+    position : absolute;
+    width : 100%;
+    clip-path : circle(0% at 0 50%);
+}*/
+.video-slide {
+    position: absolute;
+    width: 100%;
+    clip-path: circle(5% at 50%); /* Une petite valeur initiale */
+    transition: clip-path 2s ease; /* Ajouter transition ici */
+}
+
+
+.video-slide.active {
+    clip-path: circle(150% at 50%);
+    transition : 2s ease;
+    transition-property: clip-path;
+}
+@media(max-width : 1040px) {
+    section {
+        padding :100px 20px;
+    }
+
+    .home .media-icons {
+        right :15px;
+    }
+}
+
+
+
+/************* section des activités : ********/
+
+section#do-section {
+    height : 650px;
+    margin-top : 100px;
+}
+#do-section {
+    padding :70px;
+    
+}
+section .do-section {
+    display: block;
+    
+}
+/*.do_container .box .do a {
+    text-decoration: none;
+    color : black;
+}*/
+.do {
+    text-decoration : none;
+    color :black;
+}
+/*a .do {
+    text-decoration: none;
+    color : black;
+}*/
+.do_section .heading_container {
+    align-items: center;
+    text-align: center; 
+}
+.do-section .heading_container .titre h2 {
+    font-size : 100px;
+    text-transform: uppercase;
+}
+
+#titre {
+    color: #2696e9;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight : 800;
+    text-transform: uppercase;
+}
+.do_section .do_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.do_section .do_container .box {
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    margin: 35px 25px 0 25px;
+}
+
+.do_section .do_container .box .detail-box {
+    position: relative;
+    z-index: 10;  
+    padding: 5px; 
+}
+
+.do_section .do_container .box .img-box {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #353434;
+    border-radius: 100%;
+    position: relative;
+    z-index: 5; 
+}
+
+.do_section .do_container .box .img-box img {
+    width: 45px;
+}
+
+
+.do_section .do_container .box:hover .img-box {
+    background-color: #2696e9;
+}
+
+
+.do_section .do_container .arrow_bg::before {
+    content: "";
+    position: absolute;
+    top: -23px;
+    left: -17px;
+    width: 262%;
+    height: 90%;
+    z-index: 3;
+    background-size: cover;
+}
+
+.do_section .do_container .arrow-start::before {
+    background-image: url(../images/arrow-start.png);
+}
+
+.do_section .do_container .arrow-middle::before {
+    background-image: url(../images/arrow-middle.png);
+}
+
+/*.do_section .do_container .arrow-end::before {
+    background-image: url(../images/arrow-end.png);
+}*/
+
+
+ /*********************** Avis : **************************/
+ #avis .bg-light {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+
+#avis .review-container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+#avis .rating-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+#avis .rating-overview h2 {
+    font-size: 2rem;
+    color: #2e4156;
+}
+
+#avis .stars {
+    font-size: 1.5rem;
+    color: #2e4156;
+}
+
+#avis .rating-bars .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#avis .rated {
+    font-size : 1.5rem;
+    color : #2e4156;
+}
+
+#avis .non-rated {
+    font-size : 1.5rem;
+    color : #aab7b7;
+}
+
+#avis progress {
+    width: 200px;
+    height: 10px;
+    appearance: none;
+}
+
+#avis .reviews-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+#avis .recent-feedbacks, .add-review {
+    width: 48%;
+}
+
+#avis .feedback {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#avis .feedback img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#avis form input, form textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#avis form button {
+    background: #1a2d42;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#avis .star-rating span {
+    font-size: 2rem;
+    cursor: pointer;
+}
